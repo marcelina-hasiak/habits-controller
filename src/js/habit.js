@@ -1,8 +1,7 @@
 export class Habit {
-  constructor(name, storage) {
-    this.storage = storage;
+  constructor(name, calendarData) {
     this.name = name;
-    this.calendarData = this.getState() || {};
+    this.calendarData = calendarData
     this.newDate();
     this.createNewCalendarCard();
   }
@@ -20,6 +19,7 @@ export class Habit {
       this.currentMonth = 0;
       this.currentYear++;
     }
+    this.createNewCalendarCard()
   }
   prevMonth() {
     this.currentMonth--;
@@ -27,6 +27,7 @@ export class Habit {
       this.currentMonth = 11;
       this.currentYear--;
     }
+    this.createNewCalendarCard()
   }
   createNewCalendarCard() {
     if (!this.calendarData[this.fullDate]) {
@@ -54,11 +55,5 @@ export class Habit {
   }
   countCheckedChechboxes() {
     return this.calendarData[this.fullDate].reduce((acc, cur) => acc + cur);
-  }
-  saveState() {
-    this.storage.set(this.name, this.calendarData);
-  }
-  getState() {
-    return this.storage.get(this.name);
   }
 }

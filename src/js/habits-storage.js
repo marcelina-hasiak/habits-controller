@@ -1,4 +1,6 @@
-export class SavedHabits {
+import { Habit } from "./habit.js";
+
+export class HabitsStorage {
   constructor(storage) {
     this.storage = storage;
     this.names = this.getHabitsNames() || [];
@@ -14,5 +16,12 @@ export class SavedHabits {
   }
   getHabitsNames() {
     return this.storage.get("savedHabits");
+  }
+  loadHabit(name) {
+    const calendar = this.storage.get(name) || [];
+    return new Habit(name, calendar)
+  }
+  saveHabit(habit) {
+    this.storage.set(habit.name, habit.calendarData);
   }
 }

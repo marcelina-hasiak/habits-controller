@@ -68,12 +68,12 @@ export const renderCalendar = (habitContainer, newHabit) => {
   }
 };
 
-export const renderSavedHabits = (datalist, savedHabits) => {
+export const renderSavedHabits = (datalist, savedHabitsNames) => {
   if (datalist.children.length > 0) {
     const options = datalist.querySelectorAll('.search-form__habit-option--js');
     options.forEach(option => option.remove());
   }
-  for (const habitName of savedHabits.names) {
+  for (const habitName of savedHabitsNames) {
     const option = `
     <option class="search-form__habit-option search-form__habit-option--js">${habitName}</option>`;
     datalist.insertAdjacentHTML("beforeend", option);
