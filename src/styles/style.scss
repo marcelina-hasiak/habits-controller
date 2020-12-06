@@ -224,9 +224,6 @@ input::-webkit-calendar-picker-indicator {
     border-radius: 10px;
     padding: 0.8rem 0.6rem;
   }
-  &__data {
-    max-width: 260px;
-  }
   &__stats {
     @media (min-width: 1020px) {
       max-width: 90px;

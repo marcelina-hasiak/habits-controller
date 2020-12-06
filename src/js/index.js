@@ -1,6 +1,6 @@
 import { HabitsStorage } from "./habits-storage.js";
 import { AppStorage } from "./storage.js";
-import { renderCalendarHeading } from "./view.js";
+import { renderCalendarButtons } from "./view.js";
 import { renderCalendar } from "./view.js";
 import { renderSavedHabits } from "./view.js";
 import { renderStats } from "./view.js";
@@ -19,7 +19,7 @@ if (habitsStorage.names.length > 0) {
 }
 
 const initState = {
-  isCalendarHeadingRendered: false,
+  isCalendarButtonsRendered: false,
 }
 
 habitName.addEventListener("click", (event) => {
@@ -33,9 +33,9 @@ saveHabitButton.addEventListener("click", () => {
     habitsStorage.addNewHabitName(name);
     renderSavedHabits(datalist, habitsStorage.names);
 
-    if (!initState.isCalendarHeadingRendered) {
-      renderCalendarHeading(habitContainer, applicationContent);
-      initState.isCalendarHeadingRendered = true;
+    if (!initState.isCalendarButtonsRendered) {
+      renderCalendarButtons(habitContainer, applicationContent);
+      initState.isCalendarButtonsRendered = true;
     }
 
     renderCalendar(habitContainer, newHabit);

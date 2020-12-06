@@ -345,10 +345,6 @@ input::-webkit-calendar-picker-indicator {
   padding: 0.8rem 0.6rem;
 }
 
-.calendar__data {
-  max-width: 260px;
-}
-
 @media (min-width: 1020px) {
   .calendar__stats {
     max-width: 90px;

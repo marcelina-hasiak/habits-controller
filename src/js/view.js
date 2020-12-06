@@ -14,12 +14,11 @@ const month = [
   "December",
 ];
 
-export const renderCalendarHeading = (habitContainer, applicationContent) => {
+export const renderCalendarButtons = (habitContainer, applicationContent) => {
   habitContainer.classList.remove("application__body--hidden");
   applicationContent.classList.remove("application__content--mini");
   
-  const heading = `
-  <h2 class="calendar-title"> Habit calendar </h2>
+  const buttons = `
   <div class="calendar-buttons">
     <button class="calendar-buttons__button calendar-buttons__button--js calendar-buttons__button--prev">
       <img src="src/img/button.svg" alt=""/>
@@ -28,7 +27,7 @@ export const renderCalendarHeading = (habitContainer, applicationContent) => {
       <img src="src/img/button.svg" alt=""/>
     </button>
   </div>`;
-  habitContainer.insertAdjacentHTML("beforeend", heading);
+  habitContainer.insertAdjacentHTML("beforeend", buttons);
 };
 
 export const renderCalendar = (habitContainer, newHabit) => {
