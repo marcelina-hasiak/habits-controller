@@ -8,10 +8,13 @@ Write the name of the habit in the input you'd like to track and click the `Go!`
 - Input extended with search function.
 - Responsive web design.
 - Local Storage used to store the data
+
 ## How to use it ?
-No bundler was used, so type `git clone https://github.com/marcelina-hasiak/habits-controller.git` in terminal to download locally project and open it with local server (e.g by Live Server extenssion).
+No bundler/ no dependencies were used so please download locally project and open it with local server (e.g Live Server extenssion in your code editor).
 The preview is also available by github pages  [here](https://marcelina-hasiak.github.io/habits-controller/).
+
 ## Features to add in the future
+- Add some dependencies to run automatically the code `important`
 - Store the calendar data in Firebase
 - Add delete button for deleting saved habits
 - Add some animations
