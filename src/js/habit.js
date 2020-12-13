@@ -1,4 +1,5 @@
 export class Habit {
+  static TASK_CHECKED = "checked"
   constructor(name, calendarData) {
     this.name = name;
     this.calendarData = calendarData
@@ -42,15 +43,11 @@ export class Habit {
     return temporaryDate.getDay();
   }
   updateCheckboxes(index, input) {
-    if (input.checked) {
-      this.calendarData[this.fullDate][index] = 1;
-    } else {
-      this.calendarData[this.fullDate][index] = 0;
-    }
+    this.calendarData[this.fullDate][index] = input.checked ? 1 : 0
   }
   isChecked(index) {
     if (this.calendarData[this.fullDate][index] === 1) {
-      return "checked";
+      return Habit.TASK_CHECKED;
     }
   }
   countCheckedChechboxes() {

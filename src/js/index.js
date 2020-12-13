@@ -1,9 +1,6 @@
 import { HabitsStorage } from "./habits-storage.js";
 import { AppStorage } from "./storage.js";
-import { renderCalendarButtons } from "./view.js";
-import { renderCalendar } from "./view.js";
-import { renderSavedHabits } from "./view.js";
-import { renderStats } from "./view.js";
+import { renderCalendarButtons, renderCalendar, renderSavedHabits, renderStats } from "./view.js";
 
 const storage = new AppStorage();
 const habitsStorage = new HabitsStorage(storage)
@@ -26,10 +23,20 @@ habitName.addEventListener("click", (event) => {
   event.target.value = "";
 });
 
+habitName.addEventListener("keyup", (event) => {
+  if (event.keyCode === 13) {
+    habitHandler()
+  }
+});
+
 saveHabitButton.addEventListener("click", () => {
+  habitHandler()
+});
+
+const habitHandler = () => {
   if (habitName.value) {
     const name = habitName.value;
-    const newHabit = habitsStorage.loadHabit(name);
+    const habit = habitsStorage.loadHabit(name);
     habitsStorage.addNewHabitName(name);
     renderSavedHabits(datalist, habitsStorage.names);
 
@@ -38,35 +45,39 @@ saveHabitButton.addEventListener("click", () => {
       initState.isCalendarButtonsRendered = true;
     }
 
-    renderCalendar(habitContainer, newHabit);
-    renderStats(newHabit);
-    buttonHandler(newHabit);
-    inputHandler(newHabit);
+    renderCalendar(habitContainer, habit);
+    renderStats(habit);
+    buttonHandler(habit);
+    inputHandler(habit);
   };
-});
+}
 
-const buttonHandler = (newHabit) => {
+const buttonHandler = (habit) => {
   const calendarButtons = document.querySelectorAll(".calendar-buttons__button--js");
 
   calendarButtons.forEach(button => button.addEventListener('click', (event) => {
     event.currentTarget.classList.contains("calendar-buttons__button--prev")
-      ? newHabit.prevMonth()
-      : newHabit.nextMonth();
+      ? habit.prevMonth()
+      : habit.nextMonth();
 
-      renderCalendar(habitContainer, newHabit);
-      renderStats(newHabit);
-      inputHandler(newHabit);
+      renderCalendar(habitContainer, habit);
+      renderStats(habit);
+      inputHandler(habit);
   }));
 };
 
-const inputHandler = (newHabit) => {
+const inputHandler = (habit) => {
   const chechboxes = document.querySelectorAll(".habit-checkbox__input--js");
 
   chechboxes.forEach(checkbox => {
     checkbox.addEventListener("change", (event) => {
-      newHabit.updateCheckboxes(event.target.dataset.index, event.target);
-      renderStats(newHabit);
-      habitsStorage.saveHabit(newHabit);
+      checkboxHandler(event.target, habit)
     });
   });
 };
+
+const checkboxHandler = (target, habit) => {
+  habit.updateCheckboxes(target.dataset.index, target);
+  renderStats(habit);
+  habitsStorage.saveHabit(habit);
+}
