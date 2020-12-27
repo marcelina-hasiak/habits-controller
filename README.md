@@ -7,7 +7,8 @@ Write the name of the habit in the input you'd like to track and click the `Go!`
 ## Development state
 - Input extended with search function.
 - Responsive web design.
-- Local Storage used to store the data
+- Local Storage used to store the data.
+- Responsiveness above 900px only.
 
 ## How to use it ?
 No bundler/ no dependencies were used so please download locally project and open it with local server (e.g Live Server extenssion in your code editor).
