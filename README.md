@@ -16,6 +16,11 @@ The preview is also available by github pages  [here](https://marcelina-hasiak.g
 
 ## Features to add in the future
 - Add some dependencies to run automatically the code `important`
-- Store the calendar data in Firebase
 - Add delete button for deleting saved habits
 - Add some animations
+
+## Author
+Marcelina Hasiak - Design, coding and background image.
+
+## License
+For personal use only. Do not distribute.
