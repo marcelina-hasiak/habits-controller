@@ -156,7 +156,11 @@ input::-webkit-calendar-picker-indicator {
     padding: 0.8rem;
     margin-top: 1rem;
   }
-  &__habit-button {
+  &__buttons-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__add-habit-button {
     font-size: 1.3rem;
     font-family: "Comic Sans MS";
     color: #ffffff;
@@ -169,8 +173,20 @@ input::-webkit-calendar-picker-indicator {
     box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.5),
       -4px -4px 4px 0 rgba(255, 255, 255, 1);
     -webkit-text-stroke: 1px #595959;
-    align-self: flex-end;
     padding: 0.6rem 1.6rem;
+    cursor: pointer;
+  }
+  &__remove-habit-button {
+    margin-right: 1rem;
+    padding: .5rem 1rem;
+    border: none;
+    border-bottom: 1px solid #595959;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    color: #595959;
+    background: none;
     cursor: pointer;
   }
 }

@@ -249,7 +249,16 @@ input::-webkit-calendar-picker-indicator {
   margin-top: 1rem;
 }
 
-.search-form__habit-button {
+.search-form__buttons-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.search-form__add-habit-button {
   font-size: 1.3rem;
   font-family: "Comic Sans MS";
   color: #ffffff;
@@ -262,9 +271,21 @@ input::-webkit-calendar-picker-indicator {
   -webkit-box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.5), -4px -4px 4px 0 white;
           box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.5), -4px -4px 4px 0 white;
   -webkit-text-stroke: 1px #595959;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
   padding: 0.6rem 1.6rem;
+  cursor: pointer;
+}
+
+.search-form__remove-habit-button {
+  margin-right: 1rem;
+  padding: .5rem 1rem;
+  border: none;
+  border-bottom: 1px solid #595959;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.3rem;
+  color: #595959;
+  background: none;
   cursor: pointer;
 }
 

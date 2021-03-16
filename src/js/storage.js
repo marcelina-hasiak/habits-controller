@@ -10,4 +10,7 @@ export class AppStorage {
     const data = this.storage.getItem(key);
     return JSON.parse(data);
   }
+  remove(key) {
+    this.storage.removeItem(key);
+  }
 };

@@ -11,6 +11,13 @@ export class HabitsStorage {
     }
     this.saveHabitsNames();
   }
+  removeHabitName(name) {
+    if (this.names.includes(name)) {
+      const indexToRemove = this.names.indexOf(name)
+      this.names.splice(indexToRemove, 1);
+    }
+    this.names.length <= 0 ? this.deleteHabit("savedHabits") : this.saveHabitsNames();
+  }
   saveHabitsNames() {
     this.storage.set("savedHabits", this.names);
   }
@@ -23,5 +30,8 @@ export class HabitsStorage {
   }
   saveHabit(habit) {
     this.storage.set(habit.name, habit.calendarData);
+  }
+  deleteHabit(name) {
+    this.storage.remove(name)
   }
 }

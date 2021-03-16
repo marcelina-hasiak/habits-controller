@@ -7,7 +7,8 @@ const habitsStorage = new HabitsStorage(storage)
 
 const applicationContent = document.querySelector(".application__content--js")
 const habitContainer = document.querySelector(".application__body--js");
-const saveHabitButton = document.querySelector(".search-form__habit-button--js");
+const saveHabitButton = document.querySelector(".search-form__add-habit-button--js");
+const deleteHabitButton = document.querySelector(".search-form__delete-habit-button--js")
 const habitName = document.querySelector(".search-form__habit-input--js");
 const datalist = document.querySelector(".search-form__habit-list--js")
 
@@ -32,6 +33,14 @@ habitName.addEventListener("keyup", (event) => {
 saveHabitButton.addEventListener("click", () => {
   habitHandler()
 });
+
+deleteHabitButton.addEventListener("click", () => {
+  if (habitName.value) {
+    const name = habitName.value;
+    habitsStorage.deleteHabit(name)
+    habitsStorage.removeHabitName(name);
+  }
+})
 
 const habitHandler = () => {
   if (habitName.value) {

@@ -23,35 +23,38 @@
 </head>
 
 <body class="application">
-    <article class="application__content application__content--js application__content--mini">
-      <header class="application__header">
-        <div class="heading">
-          <h1 class="heading__title">Habits controller</h1>
-          <blockquote class="heading__quote">
-            <p>
-              'Routine keeps me in line, helps me pass the time and concentrate
-              my mind.'
-            </p>
-          </blockquote>
-        </div>
-        <div class="search-form">
-          <p class="search-form__wrapper">
-            <label class="search-form__habit-title" for="search-habit">
-              Type a new habit which you want to track or load one. If you
-              succssed, tick the checkbox next to date.
-            </label>
-            <input class="search-form__habit-input search-form__habit-input--js" type="search" list="saved-habits"
-              id="search-habit" />
-            <datalist class="search-form__habit-list search-form__habit-list--js" id="saved-habits">
-            </datalist>
+  <article class="application__content application__content--js application__content--mini">
+    <header class="application__header">
+      <div class="heading">
+        <h1 class="heading__title">Habits controller</h1>
+        <blockquote class="heading__quote">
+          <p>
+            'Routine keeps me in line, helps me pass the time and concentrate
+            my mind.'
           </p>
-          <button class="search-form__habit-button search-form__habit-button--js">Go!</button>
+        </blockquote>
+      </div>
+      <div class="search-form">
+        <p class="search-form__wrapper">
+          <label class="search-form__habit-title" for="search-habit">
+            Type a new habit which you want to track or load one. If you
+            succssed, tick the checkbox next to date.
+          </label>
+          <input class="search-form__habit-input search-form__habit-input--js" type="search" list="saved-habits"
+            id="search-habit" />
+          <datalist class="search-form__habit-list search-form__habit-list--js" id="saved-habits">
+          </datalist>
+        </p>
+        <div class="search-form__buttons-wrapper">
+          <button class="search-form__remove-habit-button search-form__delete-habit-button--js">Remove</button>
+          <button class="search-form__add-habit-button search-form__add-habit-button--js">Go!</button>
         </div>
-      </header>
-      <section class="application__body application__body--js application__body--hidden">
-        <h2 class="calendar-title"> Habit calendar </h2>
-      </section>
-    </article>
+      </div>
+    </header>
+    <section class="application__body application__body--js application__body--hidden">
+      <h2 class="calendar-title"> Habit calendar </h2>
+    </section>
+  </article>
   <script src="src/js/index.js" type="module"></script>
 </body>
 
