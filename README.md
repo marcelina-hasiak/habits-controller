@@ -15,8 +15,7 @@ No bundler/ no dependencies were used so please download locally project and ope
 The preview is also available by github pages  [here](https://marcelina-hasiak.github.io/habits-controller/).
 
 ## Features to add in the future
-- Add some dependencies to run automatically the code `important`
-- Add delete button for deleting saved habits
+- Add some dependencies to run automatically the code
 - Add some animations
 
 ## Author
