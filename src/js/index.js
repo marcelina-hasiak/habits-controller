@@ -1,15 +1,16 @@
 import { HabitsStorage } from "./habits-storage.js";
 import { AppStorage } from "./storage.js";
-import { renderCalendarButtons, renderCalendar, renderSavedHabits, renderStats } from "./view.js";
+import { renderCalendarButtons, renderCalendar, renderSavedHabits, renderStats, deleteCalendar } from "./view.js";
 
 const storage = new AppStorage();
 const habitsStorage = new HabitsStorage(storage)
 
 const applicationContent = document.querySelector(".application__content--js")
+const calendarTitle = document.querySelector(".calendar-title--js")
 const habitContainer = document.querySelector(".application__body--js");
 const saveHabitButton = document.querySelector(".search-form__add-habit-button--js");
 const deleteHabitButton = document.querySelector(".search-form__delete-habit-button--js")
-const habitName = document.querySelector(".search-form__habit-input--js");
+const habitInput = document.querySelector(".search-form__habit-input--js");
 const datalist = document.querySelector(".search-form__habit-list--js")
 
 if (habitsStorage.names.length > 0) {
@@ -20,48 +21,48 @@ const initState = {
   isCalendarButtonsRendered: false,
 }
 
-habitName.addEventListener("click", (event) => {
+habitInput.addEventListener("click", (event) => {
   event.target.value = "";
 });
 
-habitName.addEventListener("keyup", (event) => {
+habitInput.addEventListener("keyup", (event) => {
   if (event.keyCode === 13) {
-    habitHandler()
+    createNewCalendar()
   }
 });
 
-saveHabitButton.addEventListener("click", () => {
-  habitHandler()
-});
+saveHabitButton.addEventListener("click", createNewCalendar);
 
 deleteHabitButton.addEventListener("click", () => {
-  if (habitName.value) {
-    const name = habitName.value;
+  if (habitInput.value) {
+    const name = habitInput.value;
     habitsStorage.deleteHabit(name)
     habitsStorage.removeHabitName(name);
+    habitInput.value = ""
+    renderSavedHabits(datalist, habitsStorage.names);
+    deleteCalendar(habitContainer)
   }
 })
 
-const habitHandler = () => {
-  if (habitName.value) {
-    const name = habitName.value;
-    const habit = habitsStorage.loadHabit(name);
-    habitsStorage.addNewHabitName(name);
-    renderSavedHabits(datalist, habitsStorage.names);
+function createNewCalendar() {
+  if (habitInput.value) {
+    const habitName = habitInput.value;
+    const newHabit = habitsStorage.loadHabit(habitName);
+    
+    calendarTitle.textContent = `Habit calendar: ${habitName}`
 
     if (!initState.isCalendarButtonsRendered) {
       renderCalendarButtons(habitContainer, applicationContent);
       initState.isCalendarButtonsRendered = true;
     }
 
-    renderCalendar(habitContainer, habit);
-    renderStats(habit);
-    buttonHandler(habit);
-    inputHandler(habit);
+    renderCalendar(habitContainer, newHabit);
+    buttonHandler(newHabit, habitName);
+    inputHandler(newHabit, habitName);
   };
 }
 
-const buttonHandler = (habit) => {
+const buttonHandler = (habit, habitName) => {
   const calendarButtons = document.querySelectorAll(".calendar-buttons__button--js");
 
   calendarButtons.forEach(button => button.addEventListener('click', (event) => {
@@ -70,23 +71,26 @@ const buttonHandler = (habit) => {
       : habit.nextMonth();
 
       renderCalendar(habitContainer, habit);
-      renderStats(habit);
-      inputHandler(habit);
+      inputHandler(habit, habitName);
   }));
 };
 
-const inputHandler = (habit) => {
+const inputHandler = (habit, habitName) => {
   const chechboxes = document.querySelectorAll(".habit-checkbox__input--js");
 
   chechboxes.forEach(checkbox => {
     checkbox.addEventListener("change", (event) => {
       checkboxHandler(event.target, habit)
+      habitsStorage.addNewHabitName(habitName);
+      renderSavedHabits(datalist, habitsStorage.names);
     });
   });
 };
 
 const checkboxHandler = (target, habit) => {
   habit.updateCheckboxes(target.dataset.index, target);
-  renderStats(habit);
+  const {calendarData, fullDate} = habit;
+  const totalDaysInMonth = calendarData[fullDate].length;
+  renderStats(habit, totalDaysInMonth);
   habitsStorage.saveHabit(habit);
 }

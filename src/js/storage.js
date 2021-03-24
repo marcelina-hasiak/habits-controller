@@ -3,7 +3,6 @@ export class AppStorage {
     this.storage = localStorage;
   }
   set(key, value) {
-    const test = JSON.stringify(value)
     this.storage.setItem(key, JSON.stringify(value));
   }
   get(key) {

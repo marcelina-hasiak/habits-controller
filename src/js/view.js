@@ -27,17 +27,22 @@ export const renderCalendarButtons = (habitContainer, applicationContent) => {
       <img src="src/img/button.svg" alt=""/>
     </button>
   </div>`;
+
   habitContainer.insertAdjacentHTML("beforeend", buttons);
 };
 
 export const renderCalendar = (habitContainer, newHabit) => {
-  const {currentMonth, currentYear} = newHabit;
-  const totalDaysInMonth = newHabit.calendarData[newHabit.fullDate].length;
-  if (habitContainer.children.length > 2) {
-    habitContainer.removeChild(habitContainer.lastElementChild);
+  const {currentMonth, currentYear, calendarData, fullDate} = newHabit;
+
+  const totalDaysInMonth = calendarData[fullDate].length;
+  const calendar = document.querySelector('.calendar--js')
+
+  if (calendar) {
+    calendar.remove();
   }
+
   const tableHead = `
-  <table class="calendar">
+  <table class="calendar calendar--js">
     <thead class="calendar__header">
       <tr class="calendar__heading">
         <th class="calendar__data">${month[currentMonth]}, ${currentYear}</th>
@@ -48,6 +53,7 @@ export const renderCalendar = (habitContainer, newHabit) => {
     </tbody>
   </table>
   `;
+  
   habitContainer.insertAdjacentHTML("beforeend", tableHead);
 
   const tableBody = document.querySelector(".calendar__body");
@@ -66,6 +72,8 @@ export const renderCalendar = (habitContainer, newHabit) => {
     `;
     tableBody.insertAdjacentHTML("beforeend", tableBodyRow);
   }
+
+  renderStats(newHabit, totalDaysInMonth);
 };
 
 export const renderSavedHabits = (datalist, savedHabitsNames) => {
@@ -80,7 +88,13 @@ export const renderSavedHabits = (datalist, savedHabitsNames) => {
   }
 };
 
-export const renderStats = (newHabit) => {
+export const renderStats = (newHabit, totalDaysInMonth) => {
   const stats = document.querySelector(".calendar__stats--js");
-  stats.textContent = `${newHabit.countCheckedChechboxes()}/${newHabit.calendarData[newHabit.fullDate].length}`;
+  stats.textContent = `${newHabit.countCheckedChechboxes()}/${totalDaysInMonth}`;
+};
+
+export const deleteCalendar = (habitContainer) => {
+  for (let i = habitContainer.children.length; i > 0; i--) {
+    habitContainer.children[i - 1].remove();
+  }
 };
