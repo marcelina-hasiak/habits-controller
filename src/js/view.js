@@ -56,9 +56,14 @@ export const renderCalendarButtons = (habitContainer) => {
   habitContainer.insertAdjacentHTML("beforeend", buttons);
 };
 
-export const toggleClasses = (habitContainer, applicationContent) => {
-  habitContainer.classList.toggle("application__body--hidden");
-  applicationContent.classList.toggle("application__content--mini");
+export const addCalendarClasses = (habitContainer, applicationContent) => {
+  habitContainer.classList.add("application__body--hidden");
+  applicationContent.classList.add("application__content--mini");
+};
+
+export const removeCalendarClasses = (habitContainer, applicationContent) => {
+  habitContainer.classList.remove("application__body--hidden");
+  applicationContent.classList.remove("application__content--mini");
 };
 
 export const renderCalendar = (habitContainer, newHabit) => {

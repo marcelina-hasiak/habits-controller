@@ -1,7 +1,6 @@
 import { HabitsStorage } from "./habits-storage.js";
 import { AppStorage } from "./storage.js";
 import {
-  toggleClasses,
   changeHabitTitle,
   renderCalendarButtons,
   renderCalendar,
@@ -9,7 +8,8 @@ import {
   renderStats,
   deleteCalendar,
   renderHabitHeading,
-  hideCalendarAnimation,
+  addCalendarClasses,
+  removeCalendarClasses,
 } from "./view.js";
 
 const storage = new AppStorage();
@@ -59,7 +59,7 @@ function init() {
       habitInput.value = "";
       renderSavedHabits(datalist, habitsStorage.names);
       deleteCalendar(habitContainer);
-      toggleClasses(habitContainer, applicationContent);
+      addCalendarClasses(habitContainer, applicationContent);
       initState.isCalendarRendered = false;
     }
   });
@@ -77,7 +77,7 @@ function createNewCalendar() {
     if (!initState.isCalendarRendered) {
       renderCalendarButtons(habitContainer, applicationContent);
       renderHabitHeading(habitContainer, habitName);
-      toggleClasses(habitContainer, applicationContent);
+      removeCalendarClasses(habitContainer, applicationContent);
       initState.isCalendarRendered = true;
     }
 
