@@ -1,8 +1,8 @@
 export class Habit {
-  static TASK_CHECKED = "checked"
+  static TASK_CHECKED = "checked";
   constructor(name, calendarData) {
     this.name = name;
-    this.calendarData = calendarData
+    this.calendarData = calendarData;
     this.newDate();
     this.createNewCalendarCard();
   }
@@ -20,7 +20,7 @@ export class Habit {
       this.currentMonth = 0;
       this.currentYear++;
     }
-    this.createNewCalendarCard()
+    this.createNewCalendarCard();
   }
   prevMonth() {
     this.currentMonth--;
@@ -28,11 +28,13 @@ export class Habit {
       this.currentMonth = 11;
       this.currentYear--;
     }
-    this.createNewCalendarCard()
+    this.createNewCalendarCard();
   }
   createNewCalendarCard() {
     if (!this.calendarData[this.fullDate]) {
-      this.calendarData[this.fullDate] = new Array(this.getTotalDaysInMonth()).fill(0);
+      this.calendarData[this.fullDate] = new Array(
+        this.getTotalDaysInMonth()
+      ).fill(0);
     }
   }
   getTotalDaysInMonth() {
@@ -43,7 +45,7 @@ export class Habit {
     return temporaryDate.getDay();
   }
   updateCheckboxes(index, input) {
-    this.calendarData[this.fullDate][index] = input.checked ? 1 : 0
+    this.calendarData[this.fullDate][index] = input.checked ? 1 : 0;
   }
   isChecked(index) {
     if (this.calendarData[this.fullDate][index] === 1) {

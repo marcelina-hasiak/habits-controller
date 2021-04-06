@@ -12,4 +12,4 @@ export class AppStorage {
   remove(key) {
     this.storage.removeItem(key);
   }
-};
+}
